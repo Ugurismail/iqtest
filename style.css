@@ -1,3 +1,9 @@
 html {
 	background-color: antiquewhite;
 }
+table,
+tr,
+td {
+	border: 1px solid black;
+	text-align: center;
+}
