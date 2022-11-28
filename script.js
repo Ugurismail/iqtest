@@ -1,183 +1,54 @@
 "use strict";
-// İngilizce sorusu
-const english = {
-	soru: "hangisi köşeli parantez içindeki kelime ile eş anlamlıdır?",
-	cümleler: [
-		"The dessert will [spoil] if you don't keep it in the fridge. ",
-		"At the end of the book, there is a [quotation] from Nietzsche.",
-		"Just before the rain started the clouds started to [disperse].",
-		"This is the third [consecutive] day that I've spent crying.",
-		"He was found guilty of obtaining money through [deception].",
-	],
-	yanitlar: {
-		0: ["Associate", "Extract", "Fragile", "Rot", "Discontinuous"],
-		1: ["Decelerate", "Citation", "Precise", "Extensive", "Susceptible"],
-		2: ["Scatter", "Concentrate", "Deceive", "Bare", "Trivial"],
-		3: ["Trickery", "Scarce", "Grasp", "Humidity", "Sequential"],
-		4: ["Dishonesty", "Impoverished", "Significant", "Graceful", "Diffuse"],
-	},
-	ayarlaEng: function () {
-		const randomEng = Math.floor(Math.random() * 5);
-		const soruEng = document.getElementById("soruEng");
-		soruEng.innerText = this.soru;
 
-		const eklenecekCümle = `
-    ${this.cümleler[randomEng]}
-    `;
+let yanitList = [];
+let yanitlar = [];
+function next(yanit, sakla, goster) {
+	yanitList.push(yanit);
+	document.querySelector(sakla).classList.add("hidden");
+	document.querySelector(goster).classList.remove("hidden");
+}
 
-		const cumleContainer = document.getElementById("cumleEng");
-		cumleContainer.insertAdjacentHTML("afterbegin", eklenecekCümle);
+function switchKeys(key) {
+	switch (key) {
+		case 0:
+			yanitlar.push("a");
+			break;
+		case 1:
+			yanitlar.push("b");
+			break;
+		case 2:
+			yanitlar.push("c");
+			break;
+		case 3:
+			yanitlar.push("d");
+			break;
+		case 4:
+			yanitlar.push("e");
+			break;
+		default:
+			break;
+	}
+}
 
-		const eklenecekSiklarEng = `    
-    <h6 class="english" id="english sik" name="a"> A-${this.yanitlar[randomEng][0]}</h6>
-    <h6 class="english" id="english sik" name="b"> B-${this.yanitlar[randomEng][1]}</h6>
-    <h6 class="english" id="english sik" name="c"> C-${this.yanitlar[randomEng][2]}</h6>
-    <h6 class="english" id="english sik" name="d"> D-${this.yanitlar[randomEng][3]}</h6>
-    <h6 class="english" id="english sik" name="e" cami ="cami"> E-${this.yanitlar[randomEng][4]}</h6>`;
-
-		const şıklarContainer = document.getElementById("şıklarEng");
-		şıklarContainer.insertAdjacentHTML("afterbegin", eklenecekSiklarEng);
-
-		const englishAnswers = document.querySelectorAll(".english");
-
-		englishAnswers.forEach((answer) =>
-			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
-			}),
-		);
-	},
-};
-english.ayarlaEng();
-
-// Türkçe sorusu
-const turkish = {
-	soru: "Aşağıdaki cümlelerin hangisinde yazım yanlışı yapılmıştır?",
-	yanitlar: {
-		0: [
-			"Rakunum, kulübe de yatıyor.***",
-			"Sabahları, şen düşlerde gezerdim…",
-			"Kulaklarda hep aynı nağme.",
-			"Keşke aklım sende kalmasaydı…",
-			"Yeşil yeleğin artık bende.",
-		],
-		1: [
-			"Rakun, sırtüstü de yüzüyor.",
-			"Sabahları, şen düşler de gezerdim…***",
-			"Kulakların da çok ufakmış.",
-			"Keşke aklım sende kalmasaydı…",
-			"Yeşil yeleğini artık ben de giyerim.",
-		],
-		2: [
-			"Rakunum, kulübesinde yatıyor.",
-			"Sabahları, şen düşlerde gezerdim…",
-			"Kulaklarda hep aynı nağme.",
-			"Sende benim kadar gerçekleri görüyorsun.**",
-			"Yeşil yeleğin artık bende.",
-		],
-		3: [
-			"Rakunum, kulübesinde yatıyor.",
-			"Sabahları, şen düşlerde gezerdim…",
-			"Gözlerinde bozukmuş senin.**",
-			"Keşke aklım sende kalmasaydı…",
-			"Yeşil yeleğin artık bende.",
-		],
-		4: [
-			"Rakunum, kulübesinde yatıyor.",
-			"Sabahları, şen düşlerde gezerdim…",
-			"Kulaklarda hep aynı nağme.",
-			"Keşke aklım sende kalmasaydı…",
-			"Yeşil yeleğin artık ben de.*",
-		],
-	},
-	ayarlaTr: function () {
-		document.getElementById("soruTr").innerText = turkish.soru;
-		const randomTr = Math.floor(Math.random() * 5);
-		const eklenecekSiklarTr = `    
-<h6 class="turkish" id="turkish sik" name="a"> A-${turkish.yanitlar[randomTr][0]}</h6>
-<h6 class="turkish" id="turkish sik" name="b"> B-${turkish.yanitlar[randomTr][1]}</h6>
-<h6 class="turkish" id="turkish sik" name="c"> C-${turkish.yanitlar[randomTr][2]}</h6>
-<h6 class="turkish" id="turkish sik" name="d"> D-${turkish.yanitlar[randomTr][3]}</h6>
-<h6 class="turkish" id="turkish sik" name="e"> E-${turkish.yanitlar[randomTr][4]}</h6>`;
-
-		document
-			.getElementById("şıklarTr")
-			.insertAdjacentHTML("afterbegin", eklenecekSiklarTr);
-
-		const turkishAnswers = document.querySelectorAll(".turkish");
-
-		turkishAnswers.forEach((answer) =>
-			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
-			}),
-		);
-	},
-};
-turkish.ayarlaTr();
-
-// Matematik sorusu
-const math = {
-	soru: "Aşağıdaki İşlemin sonucu kaçtır?",
-	cümleler: [
-		"1+(-1-(-1+1-1)-1-(-1)+1)",
-		"2-	1+((-1*-1)+(-1-1))-(-1)",
-		"1+((-1+1-1)-(-1*-1))+1",
-		"1+((1+1-1)-(-1*-1))+1+1",
-		"1+((1+1-1)-(1*1))+1*2+1",
-	],
-	yanitlar: {
-		0: "0",
-		1: "1",
-		2: "2",
-		3: "3",
-		4: "4",
-	},
-	ayarlaMath: function () {
-		document.getElementById("soruMath").innerHTML = math.soru;
-		const randomMath = Math.floor(Math.random() * 5);
-		document.getElementById("cumleMath").innerHTML = math.cümleler[randomMath];
-		const eklenecekSiklarMath = `    
-<h6 class="şıklarMath" id="math sik" name="a"> A-${math.yanitlar[0]}</h6>
-<h6 class="şıklarMath" id="math sik" name="b"> B-${math.yanitlar[1]}</h6>
-<h6 class="şıklarMath" id="math sik" name="c"> C-${math.yanitlar[2]}</h6>
-<h6 class="şıklarMath" id="math sik" name="d"> D-${math.yanitlar[3]}</h6>
-<h6 class="şıklarMath" id="math sik" name="e"> E-${math.yanitlar[4]}</h6>`;
-		document
-			.getElementById("şıklarMath")
-			.insertAdjacentHTML("afterbegin", eklenecekSiklarMath);
-
-		const mathAnswers = document.querySelectorAll(".şıklarMath");
-
-		mathAnswers.forEach((answer) =>
-			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
-			}),
-		);
-	},
-};
-math.ayarlaMath();
-
-//latin sorusu
 const latin = {
 	soru: "Boşluğa hangi kelime gelmelidir?",
 	metinler: [
 		"Roma tibi subito motibus ibit amor. Signa te , signa , temere me tangis et angis. Sole medere, pede ede perede melos. Subi dura a rudibus. Si bene te tua laus taxat, sua laute tenebis. In girum imus nocte et consumimur ____ ?",
 		"Roma tibi subito motibus ibit amor. Signa te , signa , temere me tangis et angis. Subi dura a rudibus.  Si bene te tua laus taxat, sua laute tenebis. In girum imus nocte et consumimur igni. Sole medere, pede ede perede ____?",
 		"Signa te , signa , temere me tangis et angis. Sole medere, pede ede perede melos. Subi dura a rudibus. Si bene te tua laus taxat, sua laute tenebis. In girum imus nocte et consumimur igni. Roma tibi subito motibus ibit ___?",
-		"Roma tibi subito motibus ibit amor.  Sole medere, pede ede perede melos. Subi dura a rudibus. Si bene te tua laus taxat, sua laute tenebis. In girum imus nocte et consumimur igni. Signa te , signa , temere me tangis et ____?",
-		"Roma tibi subito motibus ibit amor. Signa te , signa , temere me tangis et angis. Sole medere, pede ede perede melos. Subi dura a rudibus. In girum imus nocte et consumimur igni. Si bene te tua laus taxat, sua laute ____?",
+		"Roma tibi subito motibus ibit amor.  Sole medere, pede ede perede melos. Subi dura a rudibus. Si bene te tua laus taxat, sua laute tenebis. In girum imus nocte et consumimur igni. Si bene te tua laus taxat, sua laute _____? ",
+		"Roma tibi subito motibus ibit amor. Signa te , signa , temere me tangis et angis. Sole medere, pede ede perede melos. Subi dura a rudibus. In girum imus nocte et consumimur igni. Lorem ipsum dolor sit, tisro lodmus ipme ___?",
 	],
 	yanitlar: {
-		0: ["aqua", "igni", "podex", "terra", "aura"],
-		1: ["aqua", "terra", "podex", "melos", "aura"],
-		2: ["aqua", "igni", "podex", "terra", "amor"],
-		3: ["aqua", "igni", "podex", "terra", "ignis"],
-		4: ["aqua", "igni", "podex", "tenebis", "aura"],
+		0: ["igni", "aqua", "podex", "terra", "aura"],
+		1: ["aqua", "melos", "terra", "podex", "aura"],
+		2: ["aqua", "igni", "amor", "podex", "terra"],
+		3: ["aqua", "igni", "podex", "tenebis", "ignis"],
+		4: ["aqua", "igni", "podex", "tenebis", "rol"],
 	},
 	ayarlaLtn: function () {
 		const randomLtn = Math.floor(Math.random() * 5);
+		switchKeys(randomLtn);
 		document.getElementById("soruLtn").innerText = this.soru;
 		document.getElementById("cumleLtn").innerText = this.metinler[randomLtn];
 		const eklenecekLtn = `
@@ -193,10 +64,12 @@ const latin = {
 
 		const latinAnswers = document.querySelectorAll(".latin");
 
+		let yanitDeger;
+
 		latinAnswers.forEach((answer) =>
 			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
+				yanitDeger = e.target.attributes.name.value;
+				next(yanitDeger, ".regIq1", ".regIq2");
 			}),
 		);
 	},
@@ -265,14 +138,15 @@ const tekSayi = {
 		],
 	],
 	yanitlar: {
-		0: ["4", "17", "28", "144", "188"],
+		0: ["17", "4", "28", "144", "188"],
 		1: ["2", "9", "62", "114", "180"],
-		2: ["6", "13", "82", "198", "422"],
-		3: ["8", "162", "15", "92", "74"],
-		4: ["2", "190", "44", "19", "402"],
+		2: ["6", "82", "13", "198", "422"],
+		3: ["8", "162", "92", "15", "74"],
+		4: ["2", "190", "44", "402", "19"],
 	},
 	ayarlaTkSayi: function () {
 		const randomtksayi = Math.floor(Math.random() * 5);
+		switchKeys(randomtksayi);
 		document.getElementById("tkSyisoru").innerText = this.soru;
 		for (let index = 0; index < 12; index++) {
 			document.getElementById("cell" + (index + 1)).innerText =
@@ -290,11 +164,11 @@ const tekSayi = {
 			.insertAdjacentHTML("afterbegin", eklenekcekTkSayi);
 
 		const tekSayiSiklar = document.querySelectorAll(".tkSyi");
-
+		let yanitdeger;
 		tekSayiSiklar.forEach((answer) =>
 			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
+				yanitdeger = e.target.attributes.name.value;
+				next(yanitdeger, ".regIq2", ".regIq3");
 			}),
 		);
 	},
@@ -311,14 +185,14 @@ const birler = {
 	],
 	yanitlar: {
 		0: ["48", "92", "123", "49", "60"],
-		1: ["48", "92", "123", "47", "60"],
+		1: ["48", "47", "92", "123", "60"],
 		2: ["48", "92", "46", "128", "60"],
-		3: ["45", "92", "123", "49", "60"],
+		3: ["92", "123", "49", "45", "60"],
 		4: ["48", "92", "123", "49", "44"],
 	},
 	ayarlaBirler: function () {
-		const randomtbrlr = Math.floor(Math.random() * 4);
-		const randomtbrlr2 = Math.floor(Math.random() * 5);
+		const randomtbrlr = Math.floor(Math.random() * 5);
+		switchKeys(randomtbrlr);
 		const eklenecekBrler = `
 	<h2 class="brler" id="brler" name="a"> ${this.sorular[randomtbrlr][0]}</h2>
 	<h2 class="brler" id="brler" name="b"> ${this.sorular[randomtbrlr][1]}</h2>
@@ -330,22 +204,22 @@ const birler = {
 			.insertAdjacentHTML("afterbegin", eklenecekBrler);
 
 		const eklenecekBrSiks = `
-		<h6 class="brlerSik" id="birler sik" name="a"> A-${this.yanitlar[randomtbrlr2][0]}</h6>
-		<h6 class="brlerSik" id="birler sik" name="b"> B-${this.yanitlar[randomtbrlr2][1]}</h6>
-		<h6 class="brlerSik" id="birler sik" name="c"> C-${this.yanitlar[randomtbrlr2][2]}</h6>
-		<h6 class="brlerSik" id="birler sik" name="d"> D-${this.yanitlar[randomtbrlr2][3]}</h6>
-		<h6 class="brlerSik" id="birler sik" name="e"> E-${this.yanitlar[randomtbrlr2][4]}</h6>
+		<h6 class="brlerSik" id="birler sik" name="a"> A-${this.yanitlar[randomtbrlr][0]}</h6>
+		<h6 class="brlerSik" id="birler sik" name="b"> B-${this.yanitlar[randomtbrlr][1]}</h6>
+		<h6 class="brlerSik" id="birler sik" name="c"> C-${this.yanitlar[randomtbrlr][2]}</h6>
+		<h6 class="brlerSik" id="birler sik" name="d"> D-${this.yanitlar[randomtbrlr][3]}</h6>
+		<h6 class="brlerSik" id="birler sik" name="e"> E-${this.yanitlar[randomtbrlr][4]}</h6>
 		`;
 		document
 			.getElementById("birler-siklar")
 			.insertAdjacentHTML("afterbegin", eklenecekBrSiks);
 
 		const brlersklar = document.querySelectorAll(".brlerSik");
-
+		let yanitdeger;
 		brlersklar.forEach((answer) =>
 			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
+				yanitdeger = e.target.attributes.name.value;
+				next(yanitdeger, ".regIq3", ".regIq4");
 			}),
 		);
 	},
@@ -362,13 +236,14 @@ const ekskhrf = {
 	],
 	yanitlar: {
 		0: ["tevkif", "tertip", "tenkit", "terkip", "tesbih"], //tevkif
-		1: ["tebrik", "tevkif", "tenkit", "terkip", "tesbih"], //tebrik
+		1: ["tevkif", "tebrik", "tenkit", "terkip", "tesbih"], //tebrik
 		2: ["tebrik", "tevkif", "tertip", "tenkit", "terkip"], //tertip
 		3: ["tebrik", "tevkif", "tertip", "tenkit", "tesbih"], //tenkit
-		4: ["tebrik", "tevkif", "tertip", "tespit", "türkan"], //tespit
+		4: ["tebrik", "tevkif", "tertip", "türkan", "tespit"], //tespit
 	},
 	eksikHarf: function () {
 		const randomEksk = Math.floor(Math.random() * 5);
+		switchKeys(randomEksk);
 		document.getElementById("ekskhrfmtn").innerText = this.sorular[randomEksk];
 		const eklenecekEksk = `
 		<h6 class="ekskhrf" id="ekskHrf sik" name="a"> A-${this.yanitlar[randomEksk][0]}</h6>
@@ -382,11 +257,11 @@ const ekskhrf = {
 			.insertAdjacentHTML("afterbegin", eklenecekEksk);
 
 		const eksksiklar = document.querySelectorAll(".ekskhrf");
-
+		let yanitdeger;
 		eksksiklar.forEach((answer) =>
 			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
+				yanitdeger = e.target.attributes.name.value;
+				next(yanitdeger, ".regIq4", ".regIq5");
 			}),
 		);
 	},
@@ -396,14 +271,15 @@ ekskhrf.eksikHarf();
 const alti = {
 	sorular: [
 		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 4 6 7 = ?"], //0
-		["1 2 9 6 = 0", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 4 6 8 = ?"], //2
 		["1 5 9 6 = 3", "5 7 0 9 = 3", "1 2 9 4 = 4", "6 7 4 3 = 2", "7 4 6 2 = ?"], //1
+		["1 2 9 6 = 0", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 4 6 8 = ?"], //2
 		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 3 6 9 = ?"], //4
 		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "8 3 5 7 = ?"], //5
 	],
 	yanitlar: ["0", "1", "2", "4", "5"],
 	ayarlaAlti: function () {
 		const randomAlti = Math.floor(Math.random() * 5);
+		switchKeys(randomAlti);
 		const eklenecekAltiTablo = `
 		<h2 class="alti" id="alti" name="a"> ${this.sorular[randomAlti][0]}</h2>
 		<h2 class="alti" id="alti" name="b"> ${this.sorular[randomAlti][1]}</h2>
@@ -427,11 +303,11 @@ const alti = {
 			.insertAdjacentHTML("afterbegin", eklenecekAltiyanit);
 
 		const altiSklar = document.querySelectorAll(".alti-sik");
-
+		let yanitdeger;
 		altiSklar.forEach((answer) =>
 			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
+				yanitdeger = e.target.attributes.name.value;
+				next(yanitdeger, ".regIq5", ".regIq6");
 			}),
 		);
 	},
@@ -449,6 +325,7 @@ const sayiDz = {
 	yanitlar: ["15", "32", "93", "45", "89"],
 	ayarlaSayiDz: function () {
 		const rndmSyDz = Math.floor(Math.random() * 5);
+		switchKeys(rndmSyDz);
 		document.getElementById("sayiDzSoru").innerText = this.sorular[rndmSyDz];
 		const eklnecekSyDz = `
 		<h6 class="syDzSik" id="syDzsik" name="a"> A-${this.yanitlar[0]}</h6>
@@ -462,11 +339,11 @@ const sayiDz = {
 			.insertAdjacentHTML("afterbegin", eklnecekSyDz);
 
 		const syDzSiklar = document.querySelectorAll(".syDzSik");
-
+		let yanitdeger;
 		syDzSiklar.forEach((answer) =>
 			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
+				yanitdeger = e.target.attributes.name.value;
+				next(yanitdeger, ".regIq6", ".regIq7");
 			}),
 		);
 	},
@@ -484,6 +361,7 @@ const hrfDz = {
 	yanitlar: ["İ", "Ü", "L", "R", "S"],
 	ayarlaHrfDz: function () {
 		const rndmHrfDz = Math.floor(Math.random() * 5);
+		switchKeys(rndmHrfDz);
 		document.getElementById("hrfDzSoru").innerText = this.sorular[rndmHrfDz];
 		const eklnecekHrfDz = `
 		<h6 class="hrfDzSik" id="hrfDzsikID" name="a"> A-${this.yanitlar[0]}</h6>
@@ -497,11 +375,11 @@ const hrfDz = {
 			.insertAdjacentHTML("afterbegin", eklnecekHrfDz);
 
 		const harfDisizi = document.querySelectorAll(".hrfDzSik");
-
+		let yanitdeger;
 		harfDisizi.forEach((answer) =>
 			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
+				yanitdeger = e.target.attributes.name.value;
+				next(yanitdeger, ".regIq7", ".regIq8");
 			}),
 		);
 	},
@@ -519,6 +397,7 @@ const hngFrk = {
 	],
 	ayarlaHngFrk: function () {
 		const randomHng = Math.floor(Math.random() * 5);
+		switchKeys(randomHng);
 		document.getElementById("frkliWordSru").innerText = this.soru;
 		document.getElementById("frkliWordCumle").innerText =
 			this.kelimeler[randomHng];
@@ -538,7 +417,7 @@ const hngFrk = {
 		hngSiklar.forEach((answer) =>
 			answer.addEventListener("click", (e) => {
 				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
+				next(yanitdeger, ".regIq8", ".regIq9");
 			}),
 		);
 	},
@@ -556,6 +435,7 @@ const xyz = {
 	yanitlar: ["3", "4", "5", "6", "7"],
 	ayarlaxyz: function () {
 		const randomXyz = Math.floor(Math.random() * 5);
+		switchKeys(randomXyz);
 		document.getElementById("xyzQ").innerText = this.soru[randomXyz];
 		const eklenecekXyz = `
 		<h6 class="xyz" id="xyzID" name="a"> A-${this.yanitlar[0]}</h6>
@@ -568,13 +448,191 @@ const xyz = {
 			.getElementById("xyzYnt")
 			.insertAdjacentHTML("afterbegin", eklenecekXyz);
 		const xyzSiklar = document.querySelectorAll(".xyz");
-
+		let yanitdeger;
 		xyzSiklar.forEach((answer) =>
 			answer.addEventListener("click", (e) => {
-				const yanitdeger = e.target.attributes.name.value;
-				console.log(yanitdeger);
+				yanitdeger = e.target.attributes.name.value;
+				next(yanitdeger, ".regIq9", ".english-questions");
 			}),
 		);
 	},
 };
 xyz.ayarlaxyz();
+
+const english = {
+	soru: "hangisi köşeli parantez içindeki kelime ile eş anlamlıdır?",
+	cümleler: [
+		"The dessert will [spoil] if you don't keep it in the fridge. ",
+		"At the end of the book, there is a [quotation] from Nietzsche.",
+		"Just before the rain started the clouds started to [disperse].",
+		"This is the third [consecutive] day that I've spent crying.",
+		"He was found guilty of obtaining money through [deception].",
+	],
+	yanitlar: {
+		0: ["Rot", "Associate", "Extract", "Fragile", "Discontinuous"],
+		1: ["Decelerate", "Citation", "Precise", "Extensive", "Susceptible"],
+		2: ["Concentrate", "Deceive", "Scatter", "Bare", "Trivial"],
+		3: ["Trickery", "Scarce", "Grasp", "Sequential", "Humidity"],
+		4: ["Impoverished", "Significant", "Graceful", "Diffuse", "Dishonesty"],
+	},
+	ayarlaEng: function () {
+		const randomEng = Math.floor(Math.random() * 5);
+		switchKeys(randomEng);
+		const soruEng = document.getElementById("soruEng");
+		soruEng.innerText = this.soru;
+
+		const eklenecekCümle = `
+    ${this.cümleler[randomEng]}
+    `;
+
+		const cumleContainer = document.getElementById("cumleEng");
+		cumleContainer.insertAdjacentHTML("afterbegin", eklenecekCümle);
+
+		const eklenecekSiklarEng = `    
+    <h6 class="english" id="english sik" name="a"> A-${this.yanitlar[randomEng][0]}</h6>
+    <h6 class="english" id="english sik" name="b"> B-${this.yanitlar[randomEng][1]}</h6>
+    <h6 class="english" id="english sik" name="c"> C-${this.yanitlar[randomEng][2]}</h6>
+    <h6 class="english" id="english sik" name="d"> D-${this.yanitlar[randomEng][3]}</h6>
+    <h6 class="english" id="english sik" name="e" cami ="cami"> E-${this.yanitlar[randomEng][4]}</h6>`;
+
+		const şıklarContainer = document.getElementById("şıklarEng");
+		şıklarContainer.insertAdjacentHTML("afterbegin", eklenecekSiklarEng);
+
+		const englishAnswers = document.querySelectorAll(".english");
+		let yanitdeger;
+		englishAnswers.forEach((answer) =>
+			answer.addEventListener("click", (e) => {
+				yanitdeger = e.target.attributes.name.value;
+				next(yanitdeger, ".english-questions", ".turkish-questions");
+			}),
+		);
+	},
+};
+english.ayarlaEng();
+
+// Türkçe sorusu
+const turkish = {
+	soru: "Aşağıdaki cümlelerin hangisinde yazım yanlışı yapılmıştır?",
+	yanitlar: {
+		0: [
+			"Rakunum, kulübe de yatıyor.",
+			"Sabahları, şen düşlerde gezerdim…",
+			"Kulaklarda hep aynı nağme.",
+			"Keşke aklım sende kalmasaydı…",
+			"Yeşil yeleğin artık bende.",
+		],
+		1: [
+			"Rakun, sırtüstü de yüzüyor.",
+			"Sabahları, şen düşler de gezerdim…",
+			"Kulakların da çok ufakmış.",
+			"Keşke aklım sende kalmasaydı…",
+			"Yeşil yeleğini artık ben de giyerim.",
+		],
+		2: [
+			"Rakunum, kulübesinde yatıyor.",
+			"Sabahları, şen düşlerde gezerdim…",
+			"Sende benim kadar gerçekleri görüyorsun.",
+			"Kulaklarda hep aynı nağme.",
+			"Yeşil yeleğin artık bende.",
+		],
+		3: [
+			"Rakunum, kulübesinde yatıyor.",
+			"Sabahları, şen düşlerde gezerdim…",
+			"Keşke aklım sende kalmasaydı…",
+			"Gözlerinde bozukmuş senin.",
+			"Yeşil yeleğin artık bende.",
+		],
+		4: [
+			"Rakunum, kulübesinde yatıyor.",
+			"Sabahları, şen düşlerde gezerdim…",
+			"Kulaklarda hep aynı nağme.",
+			"Keşke aklım sende kalmasaydı…",
+			"Yeşil yeleğin artık ben de.",
+		],
+	},
+	ayarlaTr: function () {
+		document.getElementById("soruTr").innerText = turkish.soru;
+		const randomTr = Math.floor(Math.random() * 5);
+		switchKeys(randomTr);
+		const eklenecekSiklarTr = `    
+<h6 class="turkish" id="turkish sik" name="a"> A-${turkish.yanitlar[randomTr][0]}</h6>
+<h6 class="turkish" id="turkish sik" name="b"> B-${turkish.yanitlar[randomTr][1]}</h6>
+<h6 class="turkish" id="turkish sik" name="c"> C-${turkish.yanitlar[randomTr][2]}</h6>
+<h6 class="turkish" id="turkish sik" name="d"> D-${turkish.yanitlar[randomTr][3]}</h6>
+<h6 class="turkish" id="turkish sik" name="e"> E-${turkish.yanitlar[randomTr][4]}</h6>`;
+
+		document
+			.getElementById("şıklarTr")
+			.insertAdjacentHTML("afterbegin", eklenecekSiklarTr);
+
+		const turkishAnswers = document.querySelectorAll(".turkish");
+		let yanitdeger;
+		turkishAnswers.forEach((answer) =>
+			answer.addEventListener("click", (e) => {
+				yanitdeger = e.target.attributes.name.value;
+				next(yanitdeger, ".turkish-questions", ".math-questions");
+			}),
+		);
+	},
+};
+turkish.ayarlaTr();
+
+// Matematik sorusu
+const math = {
+	soru: "Aşağıdaki İşlemin sonucu kaçtır?",
+	cümleler: [
+		"1+((-1+1-1)-(-1*-1))+1",
+		"2-1+((-1*-1)+(-1-1))-(-1)",
+		"1+(-1-(-1+1-1)-1-(-1)+1)",
+		"1+((1+1-1)-(-1*-1))+1+1",
+		"1+((1+1-1)-(1*1))+1*2+1",
+	],
+	yanitlar: {
+		0: "0",
+		1: "1",
+		2: "2",
+		3: "3",
+		4: "4",
+	},
+	ayarlaMath: function () {
+		document.getElementById("soruMath").innerHTML = math.soru;
+		const randomMath = Math.floor(Math.random() * 5);
+		switchKeys(randomMath);
+		document.getElementById("cumleMath").innerHTML = math.cümleler[randomMath];
+		const eklenecekSiklarMath = `    
+<h6 class="şıklarMath" id="math sik" name="a"> A-${math.yanitlar[0]}</h6>
+<h6 class="şıklarMath" id="math sik" name="b"> B-${math.yanitlar[1]}</h6>
+<h6 class="şıklarMath" id="math sik" name="c"> C-${math.yanitlar[2]}</h6>
+<h6 class="şıklarMath" id="math sik" name="d"> D-${math.yanitlar[3]}</h6>
+<h6 class="şıklarMath" id="math sik" name="e"> E-${math.yanitlar[4]}</h6>`;
+		document
+			.getElementById("şıklarMath")
+			.insertAdjacentHTML("afterbegin", eklenecekSiklarMath);
+
+		const mathAnswers = document.querySelectorAll(".şıklarMath");
+		let yanitdeger;
+		mathAnswers.forEach((answer) =>
+			answer.addEventListener("click", (e) => {
+				yanitdeger = e.target.attributes.name.value;
+				next(yanitdeger, ".math-questions", ".sonuc");
+
+				function result() {
+					let dogruNum = 0;
+					let yanlisNum = 0;
+					for (let i = 0; i < 12; i++) {
+						if (yanitList[i] === yanitlar[i]) {
+							dogruNum++;
+						} else {
+							yanlisNum++;
+						}
+					}
+					document.getElementById(
+						"sonucum",
+					).innerText = `Doğru sayınız ${dogruNum} yanlış sayınız ${yanlisNum}`;
+				}
+				result();
+			}),
+		);
+	},
+};
+math.ayarlaMath();
