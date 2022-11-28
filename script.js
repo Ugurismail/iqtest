@@ -544,3 +544,37 @@ const hngFrk = {
 	},
 };
 hngFrk.ayarlaHngFrk();
+
+const xyz = {
+	soru: [
+		[`X=2Y\nZ-X=Y\nZ=Y*? `], //3
+		[`X=3Y\nZ-X=Y\nZ=Y*? `], //4
+		[`X=4Y\nZ-X=Y\nZ=Y*? `], //5
+		[`X=5Y\nZ-X=Y\nZ=Y*? `], //6
+		[`X=6Y\nZ-X=Y\nZ=Y*? `], //7
+	],
+	yanitlar: ["3", "4", "5", "6", "7"],
+	ayarlaxyz: function () {
+		const randomXyz = Math.floor(Math.random() * 5);
+		document.getElementById("xyzQ").innerText = this.soru[randomXyz];
+		const eklenecekXyz = `
+		<h6 class="xyz" id="xyzID" name="a"> A-${this.yanitlar[0]}</h6>
+		<h6 class="xyz" id="xyzID" name="b"> B-${this.yanitlar[1]}</h6>
+		<h6 class="xyz" id="xyzID" name="c"> C-${this.yanitlar[2]}</h6>
+		<h6 class="xyz" id="xyzID" name="d"> D-${this.yanitlar[3]}</h6>
+		<h6 class="xyz" id="xyzID" name="e"> E-${this.yanitlar[4]}</h6>
+		`;
+		document
+			.getElementById("xyzYnt")
+			.insertAdjacentHTML("afterbegin", eklenecekXyz);
+		const xyzSiklar = document.querySelectorAll(".xyz");
+
+		xyzSiklar.forEach((answer) =>
+			answer.addEventListener("click", (e) => {
+				const yanitdeger = e.target.attributes.name.value;
+				console.log(yanitdeger);
+			}),
+		);
+	},
+};
+xyz.ayarlaxyz();
