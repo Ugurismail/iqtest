@@ -339,6 +339,56 @@ const birler = {
 		document
 			.getElementById("birler-siklar")
 			.insertAdjacentHTML("afterbegin", eklenecekBrSiks);
+
+		const brlersklar = document.querySelectorAll(".brlerSik");
+
+		brlersklar.forEach((answer) =>
+			answer.addEventListener("click", (e) => {
+				const yanitdeger = e.target.attributes.name.value;
+				console.log(yanitdeger);
+			}),
+		);
 	},
 };
 birler.ayarlaBirler();
+
+const ekskhrf = {
+	sorular: [
+		"A-B-C-Ç-D-G-Ğ-H-I-J-L-M-N-O-Ö-P-R-S-Ş-U-Ü-Y-Z",
+		"A-C-Ç-D-F-G-Ğ-H-I-J-L-M-N-O-Ö-P-S-Ş-U-Ü-V-Y-Z",
+		"A-B-C-Ç-D-F-G-Ğ-H-I-J-K-L-M-N-O-Ö-S-Ş-U-Ü-V-Y-Z",
+		"A-B-C-Ç-D-F-G-Ğ-H-I-J-L-M-O-Ö-P-R-S-Ş-U-Ü-V-Y-Z",
+		"A-B-C-Ç-D-F-G-Ğ-H-I-J-K-L-M-N-O-Ö-R-Ş-U-Ü-V-Y-Z",
+	],
+	yanitlar: {
+		0: ["tevkif", "tertip", "tenkit", "terkip", "tesbih"], //tevkif
+		1: ["tebrik", "tevkif", "tenkit", "terkip", "tesbih"], //tebrik
+		2: ["tebrik", "tevkif", "tertip", "tenkit", "terkip"], //tertip
+		3: ["tebrik", "tevkif", "tertip", "tenkit", "tesbih"], //tenkit
+		4: ["tebrik", "tevkif", "tertip", "tespit", "türkan"], //tespit
+	},
+	eksikHarf: function () {
+		const randomEksk = Math.floor(Math.random() * 5);
+		document.getElementById("ekskhrfmtn").innerText = this.sorular[randomEksk];
+		const eklenecekEksk = `
+		<h6 class="ekskhrf" id="ekskHrf sik" name="a"> A-${this.yanitlar[randomEksk][0]}</h6>
+		<h6 class="ekskhrf" id="ekskHrf sik" name="b"> B-${this.yanitlar[randomEksk][1]}</h6>
+		<h6 class="ekskhrf" id="ekskHrf sik" name="c"> C-${this.yanitlar[randomEksk][2]}</h6>
+		<h6 class="ekskhrf" id="ekskHrf sik" name="d"> D-${this.yanitlar[randomEksk][3]}</h6>
+		<h6 class="ekskhrf" id="ekskHrf sik" name="e"> E-${this.yanitlar[randomEksk][4]}</h6>
+		`;
+		document
+			.getElementById("ekskhrfsklar")
+			.insertAdjacentHTML("afterbegin", eklenecekEksk);
+
+		const eksksiklar = document.querySelectorAll(".ekskhrf");
+
+		eksksiklar.forEach((answer) =>
+			answer.addEventListener("click", (e) => {
+				const yanitdeger = e.target.attributes.name.value;
+				console.log(yanitdeger);
+			}),
+		);
+	},
+};
+ekskhrf.eksikHarf();
