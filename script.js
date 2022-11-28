@@ -392,3 +392,118 @@ const ekskhrf = {
 	},
 };
 ekskhrf.eksikHarf();
+
+const alti = {
+	sorular: [
+		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 4 6 7 = ?"], //0
+		["1 2 9 6 = 0", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 4 6 8 = ?"], //2
+		["1 5 9 6 = 3", "5 7 0 9 = 3", "1 2 9 4 = 4", "6 7 4 3 = 2", "7 4 6 2 = ?"], //1
+		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 3 6 9 = ?"], //4
+		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "8 3 5 7 = ?"], //5
+	],
+	yanitlar: ["0", "1", "2", "4", "5"],
+	ayarlaAlti: function () {
+		const randomAlti = Math.floor(Math.random() * 5);
+		const eklenecekAltiTablo = `
+		<h2 class="alti" id="alti" name="a"> ${this.sorular[randomAlti][0]}</h2>
+		<h2 class="alti" id="alti" name="b"> ${this.sorular[randomAlti][1]}</h2>
+		<h2 class="alti" id="alti" name="c"> ${this.sorular[randomAlti][2]}</h2>
+		<h2 class="alti" id="alti" name="d"> ${this.sorular[randomAlti][3]}</h2>
+		<h2 class="alti" id="alti" name="d"> ${this.sorular[randomAlti][4]}</h2>
+		`;
+		document
+			.getElementById("altiTablo")
+			.insertAdjacentHTML("afterbegin", eklenecekAltiTablo);
+
+		const eklenecekAltiyanit = `
+		<h6 class="alti-sik" id="alti-sik" name="a"> A-${this.yanitlar[0]}</h6>
+		<h6 class="alti-sik" id="alti-sik" name="b"> B-${this.yanitlar[1]}</h6>
+		<h6 class="alti-sik" id="alti-sik" name="c"> C-${this.yanitlar[2]}</h6>
+		<h6 class="alti-sik" id="alti-sik" name="d"> D-${this.yanitlar[3]}</h6>
+		<h6 class="alti-sik" id="alti-sik" name="e"> E-${this.yanitlar[4]}</h6>
+		`;
+		document
+			.getElementById("altiSiklar")
+			.insertAdjacentHTML("afterbegin", eklenecekAltiyanit);
+
+		const altiSklar = document.querySelectorAll(".alti-sik");
+
+		altiSklar.forEach((answer) =>
+			answer.addEventListener("click", (e) => {
+				const yanitdeger = e.target.attributes.name.value;
+				console.log(yanitdeger);
+			}),
+		);
+	},
+};
+alti.ayarlaAlti();
+
+const sayiDz = {
+	sorular: [
+		"25-24-22-19-?", //15
+		"42-41-39-36-?", //32
+		"103-102-100-97- ?", //93
+		"55-54-52-49-?", //45
+		"99-98-96-93-?", //89
+	],
+	yanitlar: ["15", "32", "93", "45", "89"],
+	ayarlaSayiDz: function () {
+		const rndmSyDz = Math.floor(Math.random() * 5);
+		document.getElementById("sayiDzSoru").innerText = this.sorular[rndmSyDz];
+		const eklnecekSyDz = `
+		<h6 class="syDzSik" id="syDzsik" name="a"> A-${this.yanitlar[0]}</h6>
+		<h6 class="syDzSik" id="syDzsik" name="b"> B-${this.yanitlar[1]}</h6>
+		<h6 class="syDzSik" id="syDzsik" name="c"> C-${this.yanitlar[2]}</h6>
+		<h6 class="syDzSik" id="syDzsik" name="d"> D-${this.yanitlar[3]}</h6>
+		<h6 class="syDzSik" id="syDzsik" name="e"> E-${this.yanitlar[4]}</h6>
+		`;
+		document
+			.getElementById("sayiDzSiklar")
+			.insertAdjacentHTML("afterbegin", eklnecekSyDz);
+
+		const syDzSiklar = document.querySelectorAll(".syDzSik");
+
+		syDzSiklar.forEach((answer) =>
+			answer.addEventListener("click", (e) => {
+				const yanitdeger = e.target.attributes.name.value;
+				console.log(yanitdeger);
+			}),
+		);
+	},
+};
+sayiDz.ayarlaSayiDz();
+
+const hrfDz = {
+	sorular: [
+		"A-Ç-F-H-?", //İ
+		"K-N-P-Ş-?", //Ü
+		"C-E-Ğ-İ-?", //L
+		"Ğ-İ-L-O-?", //R
+		"H-J-M-Ö-?", //S
+	],
+	yanitlar: ["İ", "Ü", "L", "R", "S"],
+	ayarlaHrfDz: function () {
+		const rndmHrfDz = Math.floor(Math.random() * 5);
+		document.getElementById("hrfDzSoru").innerText = this.sorular[rndmHrfDz];
+		const eklnecekHrfDz = `
+		<h6 class="hrfDzSik" id="hrfDzsikID" name="a"> A-${this.yanitlar[0]}</h6>
+		<h6 class="hrfDzSik" id="hrfDzsikID" name="b"> B-${this.yanitlar[1]}</h6>
+		<h6 class="hrfDzSik" id="hrfDzsikID" name="c"> C-${this.yanitlar[2]}</h6>
+		<h6 class="hrfDzSik" id="hrfDzsikID" name="d"> D-${this.yanitlar[3]}</h6>
+		<h6 class="hrfDzSik" id="hrfDzsikID" name="e"> E-${this.yanitlar[4]}</h6>
+		`;
+		document
+			.getElementById("hrfDzSiklar")
+			.insertAdjacentHTML("afterbegin", eklnecekHrfDz);
+
+		const harfDisizi = document.querySelectorAll(".hrfDzSik");
+
+		harfDisizi.forEach((answer) =>
+			answer.addEventListener("click", (e) => {
+				const yanitdeger = e.target.attributes.name.value;
+				console.log(yanitdeger);
+			}),
+		);
+	},
+};
+hrfDz.ayarlaHrfDz();
