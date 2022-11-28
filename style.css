@@ -1,5 +1,5 @@
 html {
-	background-color: antiquewhite;
+	background-color: #fff;
 }
 table,
 tr,
@@ -8,5 +8,64 @@ td {
 	text-align: center;
 }
 .hidden {
-	display: none;
+	display: none !important;
+}
+.tablo {
+	margin: 0 45%;
+}
+
+.timer {
+	/* text-align: center; */
+	border: 5px solid #004853;
+	display: inline;
+	padding: 5px;
+	color: #004853;
+	font-family: Verdana, sans-serif, Arial;
+	font-size: 40px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.şıklarClass {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 50px;
+}
+.şıklarClass > * {
+	text-shadow: 5px 5px 10px black;
+	font-size: 150%;
+}
+
+.şıklarClass > *:hover {
+	cursor: pointer;
+}
+
+.container {
+	animation: yuksel 2s;
+}
+
+.ortala {
+	text-align: center;
+}
+
+.yazılıSik {
+	text-align: center;
+	font-size: 150%;
+}
+.yazılıSik > *:hover {
+	cursor: pointer;
+}
+
+#ten-countdown {
+	text-align: center;
+}
+@keyframes yuksel {
+	0% {
+		transform: translateY(50px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }

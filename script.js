@@ -29,6 +29,35 @@ function switchKeys(key) {
 			break;
 	}
 }
+function countdown(elementName, minutes, seconds) {
+	let element, endTime, hours, mins, msLeft, time;
+
+	function twoDigits(n) {
+		return n <= 9 ? "0" + n : n;
+	}
+
+	function updateTimer() {
+		msLeft = endTime - +new Date();
+		if (msLeft < 1000) {
+			element.innerHTML = "Time is up!";
+			history.back();
+		} else {
+			time = new Date(msLeft);
+			hours = time.getUTCHours();
+			mins = time.getUTCMinutes();
+			element.innerHTML =
+				(hours ? hours + ":" + twoDigits(mins) : mins) +
+				":" +
+				twoDigits(time.getUTCSeconds());
+			setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
+		}
+	}
+
+	element = document.getElementById(elementName);
+	endTime = +new Date() + 1000 * (60 * minutes + seconds) + 500;
+	updateTimer();
+}
+countdown("ten-countdown", 10, 0);
 
 const latin = {
 	soru: "Boşluğa hangi kelime gelmelidir?",
@@ -52,11 +81,11 @@ const latin = {
 		document.getElementById("soruLtn").innerText = this.soru;
 		document.getElementById("cumleLtn").innerText = this.metinler[randomLtn];
 		const eklenecekLtn = `
-		<h6 class="latin" id="latin sik" name="a"> A-${this.yanitlar[randomLtn][0]}</h6>
-		<h6 class="latin" id="latin sik" name="b"> B-${this.yanitlar[randomLtn][1]}</h6>
-		<h6 class="latin" id="latin sik" name="c"> C-${this.yanitlar[randomLtn][2]}</h6>
-		<h6 class="latin" id="latin sik" name="d"> D-${this.yanitlar[randomLtn][3]}</h6>
-		<h6 class="latin" id="latin sik" name="e"> E-${this.yanitlar[randomLtn][4]}</h6>
+		<h6 class="latin" id="latin sik" name="a"> ${this.yanitlar[randomLtn][0]}</h6>
+		<h6 class="latin" id="latin sik" name="b"> ${this.yanitlar[randomLtn][1]}</h6>
+		<h6 class="latin" id="latin sik" name="c"> ${this.yanitlar[randomLtn][2]}</h6>
+		<h6 class="latin" id="latin sik" name="d"> ${this.yanitlar[randomLtn][3]}</h6>
+		<h6 class="latin" id="latin sik" name="e"> ${this.yanitlar[randomLtn][4]}</h6>
 		`;
 		document
 			.getElementById("şıklarLtn")
@@ -153,11 +182,11 @@ const tekSayi = {
 				this.sayılar[randomtksayi][index];
 		}
 		const eklenekcekTkSayi = `
-		<h6 class="tkSyi" id="tkSyi sik" name="a"> A-${this.yanitlar[randomtksayi][0]}</h6>
-		<h6 class="tkSyi" id="tkSyi sik" name="b"> B-${this.yanitlar[randomtksayi][1]}</h6>
-		<h6 class="tkSyi" id="tkSyi sik" name="c"> C-${this.yanitlar[randomtksayi][2]}</h6>
-		<h6 class="tkSyi" id="tkSyi sik" name="d"> D-${this.yanitlar[randomtksayi][3]}</h6>
-		<h6 class="tkSyi" id="tkSyi sik" name="e"> E-${this.yanitlar[randomtksayi][4]}</h6>
+		<h6 class="tkSyi" id="tkSyi sik" name="a">${this.yanitlar[randomtksayi][0]}</h6>
+		<h6 class="tkSyi" id="tkSyi sik" name="b">${this.yanitlar[randomtksayi][1]}</h6>
+		<h6 class="tkSyi" id="tkSyi sik" name="c">${this.yanitlar[randomtksayi][2]}</h6>
+		<h6 class="tkSyi" id="tkSyi sik" name="d">${this.yanitlar[randomtksayi][3]}</h6>
+		<h6 class="tkSyi" id="tkSyi sik" name="e">${this.yanitlar[randomtksayi][4]}</h6>
 		`;
 		document
 			.getElementById("tkSyiSik")
@@ -204,11 +233,11 @@ const birler = {
 			.insertAdjacentHTML("afterbegin", eklenecekBrler);
 
 		const eklenecekBrSiks = `
-		<h6 class="brlerSik" id="birler sik" name="a"> A-${this.yanitlar[randomtbrlr][0]}</h6>
-		<h6 class="brlerSik" id="birler sik" name="b"> B-${this.yanitlar[randomtbrlr][1]}</h6>
-		<h6 class="brlerSik" id="birler sik" name="c"> C-${this.yanitlar[randomtbrlr][2]}</h6>
-		<h6 class="brlerSik" id="birler sik" name="d"> D-${this.yanitlar[randomtbrlr][3]}</h6>
-		<h6 class="brlerSik" id="birler sik" name="e"> E-${this.yanitlar[randomtbrlr][4]}</h6>
+		<h6 class="brlerSik" id="birler sik" name="a">${this.yanitlar[randomtbrlr][0]}</h6>
+		<h6 class="brlerSik" id="birler sik" name="b">${this.yanitlar[randomtbrlr][1]}</h6>
+		<h6 class="brlerSik" id="birler sik" name="c">${this.yanitlar[randomtbrlr][2]}</h6>
+		<h6 class="brlerSik" id="birler sik" name="d">${this.yanitlar[randomtbrlr][3]}</h6>
+		<h6 class="brlerSik" id="birler sik" name="e">${this.yanitlar[randomtbrlr][4]}</h6>
 		`;
 		document
 			.getElementById("birler-siklar")
@@ -246,11 +275,11 @@ const ekskhrf = {
 		switchKeys(randomEksk);
 		document.getElementById("ekskhrfmtn").innerText = this.sorular[randomEksk];
 		const eklenecekEksk = `
-		<h6 class="ekskhrf" id="ekskHrf sik" name="a"> A-${this.yanitlar[randomEksk][0]}</h6>
-		<h6 class="ekskhrf" id="ekskHrf sik" name="b"> B-${this.yanitlar[randomEksk][1]}</h6>
-		<h6 class="ekskhrf" id="ekskHrf sik" name="c"> C-${this.yanitlar[randomEksk][2]}</h6>
-		<h6 class="ekskhrf" id="ekskHrf sik" name="d"> D-${this.yanitlar[randomEksk][3]}</h6>
-		<h6 class="ekskhrf" id="ekskHrf sik" name="e"> E-${this.yanitlar[randomEksk][4]}</h6>
+		<h6 class="ekskhrf" id="ekskHrf sik" name="a">${this.yanitlar[randomEksk][0]}</h6>
+		<h6 class="ekskhrf" id="ekskHrf sik" name="b">${this.yanitlar[randomEksk][1]}</h6>
+		<h6 class="ekskhrf" id="ekskHrf sik" name="c">${this.yanitlar[randomEksk][2]}</h6>
+		<h6 class="ekskhrf" id="ekskHrf sik" name="d">${this.yanitlar[randomEksk][3]}</h6>
+		<h6 class="ekskhrf" id="ekskHrf sik" name="e">${this.yanitlar[randomEksk][4]}</h6>
 		`;
 		document
 			.getElementById("ekskhrfsklar")
@@ -292,11 +321,11 @@ const alti = {
 			.insertAdjacentHTML("afterbegin", eklenecekAltiTablo);
 
 		const eklenecekAltiyanit = `
-		<h6 class="alti-sik" id="alti-sik" name="a"> A-${this.yanitlar[0]}</h6>
-		<h6 class="alti-sik" id="alti-sik" name="b"> B-${this.yanitlar[1]}</h6>
-		<h6 class="alti-sik" id="alti-sik" name="c"> C-${this.yanitlar[2]}</h6>
-		<h6 class="alti-sik" id="alti-sik" name="d"> D-${this.yanitlar[3]}</h6>
-		<h6 class="alti-sik" id="alti-sik" name="e"> E-${this.yanitlar[4]}</h6>
+		<h6 class="alti-sik" id="alti-sik" name="a">${this.yanitlar[0]}</h6>
+		<h6 class="alti-sik" id="alti-sik" name="b">${this.yanitlar[1]}</h6>
+		<h6 class="alti-sik" id="alti-sik" name="c">${this.yanitlar[2]}</h6>
+		<h6 class="alti-sik" id="alti-sik" name="d">${this.yanitlar[3]}</h6>
+		<h6 class="alti-sik" id="alti-sik" name="e">${this.yanitlar[4]}</h6>
 		`;
 		document
 			.getElementById("altiSiklar")
@@ -328,11 +357,11 @@ const sayiDz = {
 		switchKeys(rndmSyDz);
 		document.getElementById("sayiDzSoru").innerText = this.sorular[rndmSyDz];
 		const eklnecekSyDz = `
-		<h6 class="syDzSik" id="syDzsik" name="a"> A-${this.yanitlar[0]}</h6>
-		<h6 class="syDzSik" id="syDzsik" name="b"> B-${this.yanitlar[1]}</h6>
-		<h6 class="syDzSik" id="syDzsik" name="c"> C-${this.yanitlar[2]}</h6>
-		<h6 class="syDzSik" id="syDzsik" name="d"> D-${this.yanitlar[3]}</h6>
-		<h6 class="syDzSik" id="syDzsik" name="e"> E-${this.yanitlar[4]}</h6>
+		<h6 class="syDzSik" id="syDzsik" name="a">${this.yanitlar[0]}</h6>
+		<h6 class="syDzSik" id="syDzsik" name="b">${this.yanitlar[1]}</h6>
+		<h6 class="syDzSik" id="syDzsik" name="c">${this.yanitlar[2]}</h6>
+		<h6 class="syDzSik" id="syDzsik" name="d">${this.yanitlar[3]}</h6>
+		<h6 class="syDzSik" id="syDzsik" name="e">${this.yanitlar[4]}</h6>
 		`;
 		document
 			.getElementById("sayiDzSiklar")
@@ -364,11 +393,11 @@ const hrfDz = {
 		switchKeys(rndmHrfDz);
 		document.getElementById("hrfDzSoru").innerText = this.sorular[rndmHrfDz];
 		const eklnecekHrfDz = `
-		<h6 class="hrfDzSik" id="hrfDzsikID" name="a"> A-${this.yanitlar[0]}</h6>
-		<h6 class="hrfDzSik" id="hrfDzsikID" name="b"> B-${this.yanitlar[1]}</h6>
-		<h6 class="hrfDzSik" id="hrfDzsikID" name="c"> C-${this.yanitlar[2]}</h6>
-		<h6 class="hrfDzSik" id="hrfDzsikID" name="d"> D-${this.yanitlar[3]}</h6>
-		<h6 class="hrfDzSik" id="hrfDzsikID" name="e"> E-${this.yanitlar[4]}</h6>
+		<h6 class="hrfDzSik" id="hrfDzsikID" name="a">${this.yanitlar[0]}</h6>
+		<h6 class="hrfDzSik" id="hrfDzsikID" name="b">${this.yanitlar[1]}</h6>
+		<h6 class="hrfDzSik" id="hrfDzsikID" name="c">${this.yanitlar[2]}</h6>
+		<h6 class="hrfDzSik" id="hrfDzsikID" name="d">${this.yanitlar[3]}</h6>
+		<h6 class="hrfDzSik" id="hrfDzsikID" name="e">${this.yanitlar[4]}</h6>
 		`;
 		document
 			.getElementById("hrfDzSiklar")
@@ -402,11 +431,11 @@ const hngFrk = {
 		document.getElementById("frkliWordCumle").innerText =
 			this.kelimeler[randomHng];
 		const eklenecekHng = `
-		<h6 class="hng" id="hngID" name="a"> A-${this.kelimeler[randomHng][0]}</h6>
-		<h6 class="hng" id="hngID" name="b"> B-${this.kelimeler[randomHng][1]}</h6>
-		<h6 class="hng" id="hngID" name="c"> C-${this.kelimeler[randomHng][2]}</h6>
-		<h6 class="hng" id="hngID" name="d"> D-${this.kelimeler[randomHng][3]}</h6>
-		<h6 class="hng" id="hngID" name="e"> E-${this.kelimeler[randomHng][4]}</h6>
+		<h6 class="hng" id="hngID" name="a">${this.kelimeler[randomHng][0]}</h6>
+		<h6 class="hng" id="hngID" name="b">${this.kelimeler[randomHng][1]}</h6>
+		<h6 class="hng" id="hngID" name="c">${this.kelimeler[randomHng][2]}</h6>
+		<h6 class="hng" id="hngID" name="d">${this.kelimeler[randomHng][3]}</h6>
+		<h6 class="hng" id="hngID" name="e">${this.kelimeler[randomHng][4]}</h6>
 		`;
 		document
 			.getElementById("farkliKlmSiklar")
@@ -438,11 +467,11 @@ const xyz = {
 		switchKeys(randomXyz);
 		document.getElementById("xyzQ").innerText = this.soru[randomXyz];
 		const eklenecekXyz = `
-		<h6 class="xyz" id="xyzID" name="a"> A-${this.yanitlar[0]}</h6>
-		<h6 class="xyz" id="xyzID" name="b"> B-${this.yanitlar[1]}</h6>
-		<h6 class="xyz" id="xyzID" name="c"> C-${this.yanitlar[2]}</h6>
-		<h6 class="xyz" id="xyzID" name="d"> D-${this.yanitlar[3]}</h6>
-		<h6 class="xyz" id="xyzID" name="e"> E-${this.yanitlar[4]}</h6>
+		<h6 class="xyz" id="xyzID" name="a">${this.yanitlar[0]}</h6>
+		<h6 class="xyz" id="xyzID" name="b">${this.yanitlar[1]}</h6>
+		<h6 class="xyz" id="xyzID" name="c">${this.yanitlar[2]}</h6>
+		<h6 class="xyz" id="xyzID" name="d">${this.yanitlar[3]}</h6>
+		<h6 class="xyz" id="xyzID" name="e">${this.yanitlar[4]}</h6>
 		`;
 		document
 			.getElementById("xyzYnt")
@@ -489,11 +518,11 @@ const english = {
 		cumleContainer.insertAdjacentHTML("afterbegin", eklenecekCümle);
 
 		const eklenecekSiklarEng = `    
-    <h6 class="english" id="english sik" name="a"> A-${this.yanitlar[randomEng][0]}</h6>
-    <h6 class="english" id="english sik" name="b"> B-${this.yanitlar[randomEng][1]}</h6>
-    <h6 class="english" id="english sik" name="c"> C-${this.yanitlar[randomEng][2]}</h6>
-    <h6 class="english" id="english sik" name="d"> D-${this.yanitlar[randomEng][3]}</h6>
-    <h6 class="english" id="english sik" name="e" cami ="cami"> E-${this.yanitlar[randomEng][4]}</h6>`;
+    <h6 class="english" id="english sik" name="a">${this.yanitlar[randomEng][0]}</h6>
+    <h6 class="english" id="english sik" name="b">${this.yanitlar[randomEng][1]}</h6>
+    <h6 class="english" id="english sik" name="c">${this.yanitlar[randomEng][2]}</h6>
+    <h6 class="english" id="english sik" name="d">${this.yanitlar[randomEng][3]}</h6>
+    <h6 class="english" id="english sik" name="e">${this.yanitlar[randomEng][4]}</h6>`;
 
 		const şıklarContainer = document.getElementById("şıklarEng");
 		şıklarContainer.insertAdjacentHTML("afterbegin", eklenecekSiklarEng);
@@ -555,11 +584,11 @@ const turkish = {
 		const randomTr = Math.floor(Math.random() * 5);
 		switchKeys(randomTr);
 		const eklenecekSiklarTr = `    
-<h6 class="turkish" id="turkish sik" name="a"> A-${turkish.yanitlar[randomTr][0]}</h6>
-<h6 class="turkish" id="turkish sik" name="b"> B-${turkish.yanitlar[randomTr][1]}</h6>
-<h6 class="turkish" id="turkish sik" name="c"> C-${turkish.yanitlar[randomTr][2]}</h6>
-<h6 class="turkish" id="turkish sik" name="d"> D-${turkish.yanitlar[randomTr][3]}</h6>
-<h6 class="turkish" id="turkish sik" name="e"> E-${turkish.yanitlar[randomTr][4]}</h6>`;
+<h6 class="turkish" id="turkish sik" name="a">${turkish.yanitlar[randomTr][0]}</h6>
+<h6 class="turkish" id="turkish sik" name="b">${turkish.yanitlar[randomTr][1]}</h6>
+<h6 class="turkish" id="turkish sik" name="c">${turkish.yanitlar[randomTr][2]}</h6>
+<h6 class="turkish" id="turkish sik" name="d">${turkish.yanitlar[randomTr][3]}</h6>
+<h6 class="turkish" id="turkish sik" name="e">${turkish.yanitlar[randomTr][4]}</h6>`;
 
 		document
 			.getElementById("şıklarTr")
@@ -600,11 +629,11 @@ const math = {
 		switchKeys(randomMath);
 		document.getElementById("cumleMath").innerHTML = math.cümleler[randomMath];
 		const eklenecekSiklarMath = `    
-<h6 class="şıklarMath" id="math sik" name="a"> A-${math.yanitlar[0]}</h6>
-<h6 class="şıklarMath" id="math sik" name="b"> B-${math.yanitlar[1]}</h6>
-<h6 class="şıklarMath" id="math sik" name="c"> C-${math.yanitlar[2]}</h6>
-<h6 class="şıklarMath" id="math sik" name="d"> D-${math.yanitlar[3]}</h6>
-<h6 class="şıklarMath" id="math sik" name="e"> E-${math.yanitlar[4]}</h6>`;
+<h6 class="şıklarMath" id="math sik" name="a">${math.yanitlar[0]}</h6>
+<h6 class="şıklarMath" id="math sik" name="b">${math.yanitlar[1]}</h6>
+<h6 class="şıklarMath" id="math sik" name="c">${math.yanitlar[2]}</h6>
+<h6 class="şıklarMath" id="math sik" name="d">${math.yanitlar[3]}</h6>
+<h6 class="şıklarMath" id="math sik" name="e">${math.yanitlar[4]}</h6>`;
 		document
 			.getElementById("şıklarMath")
 			.insertAdjacentHTML("afterbegin", eklenecekSiklarMath);
