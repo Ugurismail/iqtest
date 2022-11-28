@@ -507,3 +507,40 @@ const hrfDz = {
 	},
 };
 hrfDz.ayarlaHrfDz();
+
+const hngFrk = {
+	soru: "Hangi Kelime diğerlerinden farklıdır?",
+	kelimeler: [
+		["DİYARBAKIR", "ANKARA", "EDİRNE", "AMASYA", "SİVAS"],
+		["SİVAS", "ŞIRNAK", "KARABÜK", "EDİRNE", "TOKAT"],
+		["SAMOS", "ANKARA", "MARDİN", "AMASYA", "ADANA"],
+		["SİVAS", "ANTALYA", "AMASYA", "BURSA", "KARABÜK"],
+		["KARABÜK", "ANKARA", "EDİRNE", "AMASYA", "RİZE"],
+	],
+	ayarlaHngFrk: function () {
+		const randomHng = Math.floor(Math.random() * 5);
+		document.getElementById("frkliWordSru").innerText = this.soru;
+		document.getElementById("frkliWordCumle").innerText =
+			this.kelimeler[randomHng];
+		const eklenecekHng = `
+		<h6 class="hng" id="hngID" name="a"> A-${this.kelimeler[randomHng][0]}</h6>
+		<h6 class="hng" id="hngID" name="b"> B-${this.kelimeler[randomHng][1]}</h6>
+		<h6 class="hng" id="hngID" name="c"> C-${this.kelimeler[randomHng][2]}</h6>
+		<h6 class="hng" id="hngID" name="d"> D-${this.kelimeler[randomHng][3]}</h6>
+		<h6 class="hng" id="hngID" name="e"> E-${this.kelimeler[randomHng][4]}</h6>
+		`;
+		document
+			.getElementById("farkliKlmSiklar")
+			.insertAdjacentHTML("afterbegin", eklenecekHng);
+
+		const hngSiklar = document.querySelectorAll(".hng");
+
+		hngSiklar.forEach((answer) =>
+			answer.addEventListener("click", (e) => {
+				const yanitdeger = e.target.attributes.name.value;
+				console.log(yanitdeger);
+			}),
+		);
+	},
+};
+hngFrk.ayarlaHngFrk();
