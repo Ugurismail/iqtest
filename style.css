@@ -1,5 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 html {
-	background-color: #fff;
+	background: rgb(58, 157, 180);
+	background: linear-gradient(
+		45deg,
+		rgba(58, 157, 180, 1) 0%,
+		rgba(29, 116, 253, 1) 100%
+	);
+}
+body {
+	height: 100vh;
+	color: cornsilk;
+	font-family: "Lora", "Helvetica Neue";
 }
 table,
 tr,
@@ -11,8 +22,23 @@ td {
 	display: none !important;
 }
 .tablo {
-	margin: 0 45%;
+	display: flex;
+	justify-content: center;
+	transform: scale(1.5);
+	margin-top: 40px;
 }
+/* .glass {
+	position: absolute;
+	left: 45%;
+	top: 5%;
+	width: 300px;
+	transform: rotate(10deg);
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(2px);
+	-webkit-backdrop-filter: blur(4px);
+} */
 
 .timer {
 	/* text-align: center; */
@@ -27,7 +53,7 @@ td {
 }
 .şıklarClass {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 	padding: 50px;
 }
@@ -41,7 +67,7 @@ td {
 }
 
 .container {
-	animation: yuksel 2s;
+	animation: yuksel 1.5s;
 }
 
 .ortala {

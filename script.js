@@ -57,7 +57,6 @@ function countdown(elementName, minutes, seconds) {
 	endTime = +new Date() + 1000 * (60 * minutes + seconds) + 500;
 	updateTimer();
 }
-// countdown("ten-countdown", 13, 0);
 
 document.getElementById("girisbtn").addEventListener("click", () => {
 	document.getElementById("giriş").classList.add("hidden");
@@ -68,11 +67,11 @@ document.getElementById("girisbtn").addEventListener("click", () => {
 const latin = {
 	soru: "Boşluğa hangi kelime gelmelidir?",
 	metinler: [
-		"Roma tibi subito motibus ibit amor. Signa te , signa , temere me tangis et angis. Sole medere, pede ede perede melos. Subi dura a rudibus. Si bene te tua laus taxat, sua laute tenebis. In girum imus nocte et consumimur ____ ?",
-		"Roma tibi subito motibus ibit amor. Signa te , signa , temere me tangis et angis. Subi dura a rudibus.  Si bene te tua laus taxat, sua laute tenebis. In girum imus nocte et consumimur igni. Sole medere, pede ede perede ____?",
-		"Signa te , signa , temere me tangis et angis. Sole medere, pede ede perede melos. Subi dura a rudibus. Si bene te tua laus taxat, sua laute tenebis. In girum imus nocte et consumimur igni. Roma tibi subito motibus ibit ___?",
-		"Roma tibi subito motibus ibit amor.  Sole medere, pede ede perede melos. Subi dura a rudibus. Si bene te tua laus taxat, sua laute tenebis. In girum imus nocte et consumimur igni. Si bene te tua laus taxat, sua laute _____? ",
-		"Roma tibi subito motibus ibit amor. Signa te , signa , temere me tangis et angis. Sole medere, pede ede perede melos. Subi dura a rudibus. In girum imus nocte et consumimur igni. Lorem ipsum dolor sit, tisro lodmus ipme ___?",
+		"Roma tibi subito motibus ibit amor.\n Signa te , signa , temere me tangis et angis.\n Sole medere, pede ede perede melos.\n Subi dura a rudibus.\n Si bene te tua laus taxat, sua laute tenebis.\n In girum imus nocte et consumimur ____ ?",
+		"Roma tibi subito motibus ibit amor.\n Signa te, signa, temere me tangis et angis.\n Subi dura a rudibus.\n  Si bene te tua laus taxat, sua laute tenebis.\n In girum imus nocte et consumimur igni.\n Sole medere, pede ede perede ____?",
+		"Signa te, signa, temere me tangis et angis.\n Sole medere, pede ede perede melos.\n Subi dura a rudibus.\n Si bene te tua laus taxat, sua laute tenebis.\n In girum imus nocte et consumimur igni.\n Roma tibi subito motibus ibit ___?",
+		"Roma tibi subito motibus ibit amor.\n  Sole medere, pede ede perede melos.\n Subi dura a rudibus.\n Si bene te tua laus taxat, sua laute tenebis.\n In girum imus nocte et consumimur igni.\n Si bene te tua laus taxat, sua laute _____? ",
+		"Roma tibi subito motibus ibit amor.\n Signa te, signa, temere me tangis et angis.\n Sole medere, pede ede perede melos.\n Subi dura a rudibus.\n In girum imus nocte et consumimur igni.\n Lorem ipsum dolor sit, tisro lodmus pime ___?",
 	],
 	yanitlar: {
 		0: ["igni", "aqua", "podex", "terra", "aura"],
@@ -112,7 +111,7 @@ const latin = {
 latin.ayarlaLtn();
 
 const tekSayi = {
-	soru: "Hangisi Tabloya ait değildir?",
+	soru: "Aşağıdaki Tabloda hangi sayı uyumsuzdur?",
 	sayılar: [
 		[
 			"4",
@@ -180,8 +179,7 @@ const tekSayi = {
 		4: ["2", "190", "44", "402", "19"],
 	},
 	ayarlaTkSayi: function () {
-		const randomtksayi = 3;
-		// Math.floor(Math.random() * 5);
+		const randomtksayi = Math.floor(Math.random() * 5);
 		switchKeys(randomtksayi);
 		document.getElementById("tkSyisoru").innerText = this.soru;
 		for (let index = 0; index < 12; index++) {
@@ -352,13 +350,13 @@ alti.ayarlaAlti();
 
 const sayiDz = {
 	sorular: [
-		"25-24-22-19-?", //15
-		"42-41-39-36-?", //32
-		"103-102-100-97- ?", //93
-		"55-54-52-49-?", //45
-		"99-98-96-93-?", //89
+		"2, 5, 12, 27, ?", //58
+		"3, 7, 16, 35, ?", //74
+		"4, 9, 20, 43, ?", //90
+		"5, 11, 24, 51, ?", //106
+		"6, 13, 28, 59, ?", //122
 	],
-	yanitlar: ["15", "32", "93", "45", "89"],
+	yanitlar: ["58", "74", "90", "106", "122"],
 	ayarlaSayiDz: function () {
 		const rndmSyDz = Math.floor(Math.random() * 5);
 		switchKeys(rndmSyDz);
@@ -425,11 +423,11 @@ hrfDz.ayarlaHrfDz();
 const hngFrk = {
 	soru: "Hangi Kelime diğerlerinden farklıdır?",
 	kelimeler: [
-		["DİYARBAKIR", "ANKARA", "EDİRNE", "AMASYA", "SİVAS"],
-		["SİVAS", "ŞIRNAK", "KARABÜK", "EDİRNE", "TOKAT"],
-		["SAMOS", "ANKARA", "MARDİN", "AMASYA", "ADANA"],
-		["SİVAS", "ANTALYA", "AMASYA", "BURSA", "KARABÜK"],
-		["KARABÜK", "ANKARA", "EDİRNE", "AMASYA", "RİZE"],
+		["DİYARBAKIR", " ANKARA", " EDİRNE", " AMASYA", " SİVAS "],
+		["SİVAS", " ŞIRNAK", " KARABÜK", " EDİRNE", " TOKAT "],
+		["SAMOS", " ANKARA", " MARDİN", " AMASYA", " ADANA "],
+		["SİVAS", " ANTALYA", " AMASYA", " BURSA", " KARABÜK "],
+		["KARABÜK", " ANKARA", " EDİRNE", " AMASYA", " AYDIN"],
 	],
 	ayarlaHngFrk: function () {
 		const randomHng = Math.floor(Math.random() * 5);
@@ -462,11 +460,11 @@ hngFrk.ayarlaHngFrk();
 
 const xyz = {
 	soru: [
-		[`X=2Y\nZ-X=Y\nZ=Y*? `], //3
-		[`X=3Y\nZ-X=Y\nZ=Y*? `], //4
-		[`X=4Y\nZ-X=Y\nZ=Y*? `], //5
-		[`X=5Y\nZ-X=Y\nZ=Y*? `], //6
-		[`X=6Y\nZ-X=Y\nZ=Y*? `], //7
+		[` X = 2Y \n Z - X = Y \n Z = Y * ? `], //3
+		[` X = 3 Y \n Z - X = Y \n Z = Y * ? `], //4
+		[` X = 4 Y \n Z - X = Y \n Z = Y * ? `], //5
+		[` X = 5 Y \n Z - X = Y \n Z = Y * ? `], //6
+		[` X = 6 Y \n Z - X = Y \n Z = Y * ? `], //7
 	],
 	yanitlar: ["3", "4", "5", "6", "7"],
 	ayarlaxyz: function () {
