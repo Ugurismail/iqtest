@@ -57,7 +57,13 @@ function countdown(elementName, minutes, seconds) {
 	endTime = +new Date() + 1000 * (60 * minutes + seconds) + 500;
 	updateTimer();
 }
-countdown("ten-countdown", 10, 0);
+// countdown("ten-countdown", 13, 0);
+
+document.getElementById("girisbtn").addEventListener("click", () => {
+	document.getElementById("giriş").classList.add("hidden");
+	document.querySelector(".regIq1").classList.remove("hidden");
+	countdown("ten-countdown", 13, 0);
+});
 
 const latin = {
 	soru: "Boşluğa hangi kelime gelmelidir?",
@@ -146,7 +152,7 @@ const tekSayi = {
 			"132",
 			"16",
 			"74",
-			"162",
+			"172",
 			"522",
 			"34",
 			"302",
@@ -174,7 +180,8 @@ const tekSayi = {
 		4: ["2", "190", "44", "402", "19"],
 	},
 	ayarlaTkSayi: function () {
-		const randomtksayi = Math.floor(Math.random() * 5);
+		const randomtksayi = 3;
+		// Math.floor(Math.random() * 5);
 		switchKeys(randomtksayi);
 		document.getElementById("tkSyisoru").innerText = this.soru;
 		for (let index = 0; index < 12; index++) {
@@ -301,8 +308,8 @@ const alti = {
 	sorular: [
 		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 4 6 7 = ?"], //0
 		["1 5 9 6 = 3", "5 7 0 9 = 3", "1 2 9 4 = 4", "6 7 4 3 = 2", "7 4 6 2 = ?"], //1
-		["1 2 9 6 = 0", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 4 6 8 = ?"], //2
-		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 3 6 9 = ?"], //4
+		["1 2 9 6 = 0", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 5 6 8 = ?"], //2
+		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 3 3 9 = ?"], //4
 		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "8 3 5 7 = ?"], //5
 	],
 	yanitlar: ["0", "1", "2", "4", "5"],
@@ -381,13 +388,13 @@ sayiDz.ayarlaSayiDz();
 
 const hrfDz = {
 	sorular: [
-		"A-Ç-F-H-?", //İ
+		"A-Ç-F-H-?", //J
 		"K-N-P-Ş-?", //Ü
 		"C-E-Ğ-İ-?", //L
 		"Ğ-İ-L-O-?", //R
 		"H-J-M-Ö-?", //S
 	],
-	yanitlar: ["İ", "Ü", "L", "R", "S"],
+	yanitlar: ["J", "Ü", "L", "R", "S"],
 	ayarlaHrfDz: function () {
 		const rndmHrfDz = Math.floor(Math.random() * 5);
 		switchKeys(rndmHrfDz);
