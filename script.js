@@ -61,7 +61,7 @@ function countdown(elementName, minutes, seconds) {
 document.getElementById("girisbtn").addEventListener("click", () => {
 	document.getElementById("giriş").classList.add("hidden");
 	document.querySelector(".regIq1").classList.remove("hidden");
-	countdown("ten-countdown", 13, 0);
+	countdown("ten-countdown", 12, 0);
 });
 
 const latin = {
@@ -386,17 +386,12 @@ sayiDz.ayarlaSayiDz();
 
 const hrfDz = {
 	sorular: [
-		"A-Ç-F-H-?", //J
-		"K-N-P-Ş-?", //Ü
-		"C-E-Ğ-İ-?", //L
-		"Ğ-İ-L-O-?", //R
-		"H-J-M-Ö-?", //S
+		"P-S-?-P-C-C-P", //Ç
 	],
-	yanitlar: ["J", "Ü", "L", "R", "S"],
+	yanitlar: ["B", "Ç", "L", "R", "T"],
 	ayarlaHrfDz: function () {
-		const rndmHrfDz = Math.floor(Math.random() * 5);
-		switchKeys(rndmHrfDz);
-		document.getElementById("hrfDzSoru").innerText = this.sorular[rndmHrfDz];
+		switchKeys(1);
+		document.getElementById("hrfDzSoru").innerText = this.sorular;
 		const eklnecekHrfDz = `
 		<h6 class="hrfDzSik" id="hrfDzsikID" name="a">${this.yanitlar[0]}</h6>
 		<h6 class="hrfDzSik" id="hrfDzsikID" name="b">${this.yanitlar[1]}</h6>
