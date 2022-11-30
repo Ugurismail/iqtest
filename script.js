@@ -7,6 +7,21 @@ function next(yanit, sakla, goster) {
 	document.querySelector(sakla).classList.add("hidden");
 	document.querySelector(goster).classList.remove("hidden");
 }
+function timeUp() {
+	document.querySelectorAll;
+}
+function result() {
+	let dogruNum = 0;
+	let yanlisNum = 0;
+	for (let i = 0; i < 12; i++) {
+		if (yanitList[i] === yanitlar[i]) {
+			dogruNum++;
+		} else {
+			yanlisNum++;
+		}
+	}
+	document.getElementById("sonucum").innerText = `Doğru sayınız ${dogruNum}`;
+}
 
 function switchKeys(key) {
 	switch (key) {
@@ -40,7 +55,11 @@ function countdown(elementName, minutes, seconds) {
 		msLeft = endTime - +new Date();
 		if (msLeft < 1000) {
 			element.innerHTML = "Time is up!";
-			history.back();
+			document.querySelector("section").classList.add("hidden");
+			document.querySelector("#sonuc").classList.remove("hidden");
+			result();
+
+			// history.back();
 		} else {
 			time = new Date(msLeft);
 			hours = time.getUTCHours();
@@ -61,7 +80,7 @@ function countdown(elementName, minutes, seconds) {
 document.getElementById("girisbtn").addEventListener("click", () => {
 	document.getElementById("giriş").classList.add("hidden");
 	document.querySelector(".regIq1").classList.remove("hidden");
-	countdown("ten-countdown", 12, 0);
+	countdown("ten-countdown", 0.1, 0);
 });
 
 const latin = {
@@ -645,20 +664,6 @@ const math = {
 				yanitdeger = e.target.attributes.name.value;
 				next(yanitdeger, ".math-questions", ".sonuc");
 
-				function result() {
-					let dogruNum = 0;
-					let yanlisNum = 0;
-					for (let i = 0; i < 12; i++) {
-						if (yanitList[i] === yanitlar[i]) {
-							dogruNum++;
-						} else {
-							yanlisNum++;
-						}
-					}
-					document.getElementById(
-						"sonucum",
-					).innerText = `Doğru sayınız ${dogruNum} yanlış sayınız ${yanlisNum}`;
-				}
 				result();
 			}),
 		);
