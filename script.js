@@ -80,7 +80,7 @@ function countdown(elementName, minutes, seconds) {
 document.getElementById("girisbtn").addEventListener("click", () => {
 	document.getElementById("giriş").classList.add("hidden");
 	document.querySelector(".regIq1").classList.remove("hidden");
-	countdown("ten-countdown", 0.1, 0);
+	countdown("ten-countdown", 12, 0);
 });
 
 const latin = {
