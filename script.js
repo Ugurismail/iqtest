@@ -10,6 +10,16 @@ function next(yanit, sakla, goster) {
 function timeUp() {
 	document.querySelectorAll;
 }
+
+function sendData(e) {
+	let data = {
+		dogruNum: `${e}`,
+	};
+	const req = new XMLHttpRequest();
+	req.open("POST", "/home.html");
+	req.send(data);
+}
+
 function result() {
 	let dogruNum = 0;
 	let yanlisNum = 0;
@@ -20,6 +30,8 @@ function result() {
 			yanlisNum++;
 		}
 	}
+	sendData(dogruNum);
+
 	document.getElementById("sonucum").innerText = `Doğru sayınız ${dogruNum}`;
 }
 
@@ -80,7 +92,7 @@ function countdown(elementName, minutes, seconds) {
 document.getElementById("girisbtn").addEventListener("click", () => {
 	document.getElementById("giriş").classList.add("hidden");
 	document.querySelector(".regIq1").classList.remove("hidden");
-	countdown("ten-countdown", 12, 0);
+	countdown("ten-countdown", 0.1, 0);
 });
 
 const latin = {
