@@ -7,9 +7,6 @@ function next(yanit, sakla, goster) {
 	document.querySelector(sakla).classList.add("hidden");
 	document.querySelector(goster).classList.remove("hidden");
 }
-function timeUp() {
-	document.querySelectorAll;
-}
 
 function sendData(e) {
 	let data = {
@@ -42,7 +39,7 @@ function result() {
 	} else {
 		document.getElementById(
 			"sonucum",
-		).innerText = `Doğru sayınız ${dogruNum} abi sen sıkılırsın burda. biz seni daha rahat edeceğin bir yere gönderelim.`;
+		).innerText = `Bize katılmanı çok isteriz ama sen sıkılırsın burda. biz seni daha rahat edeceğin bir yere gönderelim.`;
 		setTimeout(() => {
 			window.location.href = "https://eksisozluk.com/";
 		}, 2000);
@@ -106,7 +103,7 @@ function countdown(elementName, minutes, seconds) {
 document.getElementById("girisbtn").addEventListener("click", () => {
 	document.getElementById("giriş").classList.add("hidden");
 	document.querySelector(".regIq1").classList.remove("hidden");
-	countdown("ten-countdown", 12, 0);
+	countdown("ten-countdown", 0.1, 0);
 });
 
 const latin = {
