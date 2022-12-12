@@ -32,7 +32,21 @@ function result() {
 	}
 	sendData(dogruNum);
 
-	document.getElementById("sonucum").innerText = `Doğru sayınız ${dogruNum}`;
+	if (dogruNum > 8) {
+		document.getElementById(
+			"sonucum",
+		).innerText = `Doğru sayınız ${dogruNum} aramıza hoşgeldiniz.`;
+		setTimeout(() => {
+			window.location.href = "http://127.0.0.1:5500/home.html";
+		}, 2000);
+	} else {
+		document.getElementById(
+			"sonucum",
+		).innerText = `Doğru sayınız ${dogruNum} abi sen sıkılırsın burda. biz seni daha rahat edeceğin bir yere gönderelim.`;
+		setTimeout(() => {
+			window.location.href = "https://eksisozluk.com/";
+		}, 2000);
+	}
 }
 
 function switchKeys(key) {
@@ -92,7 +106,7 @@ function countdown(elementName, minutes, seconds) {
 document.getElementById("girisbtn").addEventListener("click", () => {
 	document.getElementById("giriş").classList.add("hidden");
 	document.querySelector(".regIq1").classList.remove("hidden");
-	countdown("ten-countdown", 0.1, 0);
+	countdown("ten-countdown", 12, 0);
 });
 
 const latin = {
@@ -242,11 +256,11 @@ tekSayi.ayarlaTkSayi();
 
 const birler = {
 	sorular: [
-		["21 + 18 = 93", "46 + 32 = 87", "95 + 81 = 77", "91 + 92 = ?"], //48
-		["21 + 18 = 93", "46 + 32 = 87", "95 + 81 = 77", "81 + 92 = ?"], //47
-		["21 + 18 = 93", "46 + 32 = 87", "95 + 81 = 77", "71 + 92 = ?"], //46
-		["21 + 18 = 93", "46 + 32 = 87", "95 + 81 = 77", "61 + 92 = ?"], //45
-		["21 + 18 = 93", "46 + 32 = 87", "95 + 81 = 77", "51 + 92 = ?"], //44
+		["21 + 18 = 93", "46 + 32 = 87", "95 + 81 = 77", "91 + 92 = ?"],
+		["21 + 18 = 93", "46 + 32 = 87", "95 + 81 = 77", "81 + 92 = ?"],
+		["21 + 18 = 93", "46 + 32 = 87", "95 + 81 = 77", "71 + 92 = ?"],
+		["21 + 18 = 93", "46 + 32 = 87", "95 + 81 = 77", "61 + 92 = ?"],
+		["21 + 18 = 93", "46 + 32 = 87", "95 + 81 = 77", "51 + 92 = ?"],
 	],
 	yanitlar: {
 		0: ["48", "92", "123", "49", "60"],
@@ -300,11 +314,11 @@ const ekskhrf = {
 		"A-B-C-Ç-D-F-G-Ğ-H-I-J-K-L-M-N-O-Ö-R-Ş-U-Ü-V-Y-Z",
 	],
 	yanitlar: {
-		0: ["tevkif", "tertip", "tenkit", "terkip", "tesbih"], //tevkif
-		1: ["tevkif", "tebrik", "tenkit", "terkip", "tesbih"], //tebrik
-		2: ["tebrik", "tevkif", "tertip", "tenkit", "terkip"], //tertip
-		3: ["tebrik", "tevkif", "tertip", "tenkit", "tesbih"], //tenkit
-		4: ["tebrik", "tevkif", "tertip", "türkan", "tespit"], //tespit
+		0: ["tevkif", "tertip", "tenkit", "terkip", "tesbih"],
+		1: ["tevkif", "tebrik", "tenkit", "terkip", "tesbih"],
+		2: ["tebrik", "tevkif", "tertip", "tenkit", "terkip"],
+		3: ["tebrik", "tevkif", "tertip", "tenkit", "tesbih"],
+		4: ["tebrik", "tevkif", "tertip", "türkan", "tespit"],
 	},
 	eksikHarf: function () {
 		const randomEksk = Math.floor(Math.random() * 5);
@@ -335,11 +349,11 @@ ekskhrf.eksikHarf();
 
 const alti = {
 	sorular: [
-		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 4 6 7 = ?"], //0
-		["1 5 9 6 = 3", "5 7 0 9 = 3", "1 2 9 4 = 4", "6 7 4 3 = 2", "7 4 6 2 = ?"], //1
-		["1 2 9 6 = 0", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 5 6 8 = ?"], //2
-		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 3 3 9 = ?"], //4
-		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "8 3 5 7 = ?"], //5
+		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 4 6 7 = ?"],
+		["1 5 9 6 = 3", "5 7 0 9 = 3", "1 2 9 4 = 4", "6 7 4 3 = 2", "7 4 6 2 = ?"],
+		["1 2 9 6 = 0", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 5 6 8 = ?"],
+		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "7 3 3 9 = ?"],
+		["1 5 9 6 = 3", "5 7 8 9 = 5", "1 2 3 4 = 4", "6 7 4 2 = 1", "8 3 5 7 = ?"],
 	],
 	yanitlar: ["0", "1", "2", "4", "5"],
 	ayarlaAlti: function () {
@@ -381,11 +395,11 @@ alti.ayarlaAlti();
 
 const sayiDz = {
 	sorular: [
-		"2, 5, 12, 27, ?", //58
-		"3, 7, 16, 35, ?", //74
-		"4, 9, 20, 43, ?", //90
-		"5, 11, 24, 51, ?", //106
-		"6, 13, 28, 59, ?", //122
+		"2, 5, 12, 27, ?",
+		"3, 7, 16, 35, ?",
+		"4, 9, 20, 43, ?",
+		"5, 11, 24, 51, ?",
+		"6, 13, 28, 59, ?",
 	],
 	yanitlar: ["58", "74", "90", "106", "122"],
 	ayarlaSayiDz: function () {
@@ -416,9 +430,7 @@ const sayiDz = {
 sayiDz.ayarlaSayiDz();
 
 const hrfDz = {
-	sorular: [
-		"P-S-?-P-C-C-P", //Ç
-	],
+	sorular: ["P-S-?-P-C-C-P"],
 	yanitlar: ["B", "Ç", "L", "R", "T"],
 	ayarlaHrfDz: function () {
 		switchKeys(1);
@@ -486,11 +498,11 @@ hngFrk.ayarlaHngFrk();
 
 const xyz = {
 	soru: [
-		[` X = 2Y \n Z - X = Y \n Z = Y * ? `], //3
-		[` X = 3 Y \n Z - X = Y \n Z = Y * ? `], //4
-		[` X = 4 Y \n Z - X = Y \n Z = Y * ? `], //5
-		[` X = 5 Y \n Z - X = Y \n Z = Y * ? `], //6
-		[` X = 6 Y \n Z - X = Y \n Z = Y * ? `], //7
+		[` X = 2Y \n Z - X = Y \n Z = Y * ? `],
+		[` X = 3 Y \n Z - X = Y \n Z = Y * ? `],
+		[` X = 4 Y \n Z - X = Y \n Z = Y * ? `],
+		[` X = 5 Y \n Z - X = Y \n Z = Y * ? `],
+		[` X = 6 Y \n Z - X = Y \n Z = Y * ? `],
 	],
 	yanitlar: ["3", "4", "5", "6", "7"],
 	ayarlaxyz: function () {
