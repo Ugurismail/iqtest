@@ -11,6 +11,10 @@
   <title>IQ Test</title>
 </head>
 
+<nav>
+  <img class="svgnav" src="svgsvg.svg" alt="svg" srcset="">
+</nav>
+
 <body>
 
   <div id="ten-countdown"></div>
@@ -138,8 +142,14 @@
 
   </h1>
 
-
-
+  <div id="testibitir" class="testibitir hidden">
+    <form method='post' action=''>
+      {% csrf_token %}
+      <p>Lütfen Testi Bitir Butonuna tıklayınız.</p>
+      <input type="text" id="sendresult" name="sendresult" class="hidden">
+      <input type="submit" value="Testi Bitir" id="rsltbtn">
+    </form>
+  </div>
 
 </body>
 
